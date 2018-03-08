@@ -1,0 +1,8 @@
+section class='content'
+  h2. Make a donation for #{number_to_currency(@donation.amount)}
+  = form_tag donations_path do
+    = hidden_field_tag(:amount, @donation.amount)
+    script.stripe-button{data-amount="@donation.amount * 100" data-currency="cad" data-description="Custom Donation"
+    data-image=asset_path('custom.jpg')
+    data-key=@pk data-locale="auto" data-name="donation"
+    src="https://checkout.stripe.com/checkout.js"}

@@ -1,0 +1,53 @@
+section class='content'
+
+    div class='text'
+      h1= @page[:intro][:title]
+      - @page[:intro][:content].each do |paragraph|
+        p= paragraph
+
+      h2
+        =link_to('Why should I donate?', 'javascript:void scrollTo("why");')
+
+div class='selection-layout'
+  section class='selections'
+    - Selections.all.each do |selection|
+      div class='donation'
+        h2= "#{selection.name} $#{selection.amount/100}"
+        = image_tag(selection.image)
+        = form_tag donations_path do
+          = hidden_field_tag(:amount, selection.amount/100)
+          script.stripe-button{data-amount="selection.amount" data-currency="cad" data-description="selection.name"
+          data-image=asset_path('custom.jpg')
+          data-key=@pk data-locale="auto" data-name="donation"
+          src="https://checkout.stripe.com/checkout.js"}
+    div class='donation'
+      h2 Custom Amount
+      = simple_form_for :custom_donation, url: custom_donation_path do |f|
+        = f.input :amount
+        = f.submit 'Make Custom Donation'
+
+div id='why' class='content'
+  h2= @page[:why_donate][:heading]
+
+  section
+    ul class="reason-list"
+      - @page[:why_donate][:content].each do |paragraph|
+        li= paragraph
+
+  h2= @page[:how_it_works][:heading]
+  section
+    p
+      | All payments are processed securely with #{link_to('Stripe', 'http://stripe.com')}.
+        We never receive your payment details, they go directly to Strip and are stored on their secure servers.
+        Because we are running this site ourselves, there are no additional processing fees like when using donately.com or gofundme.com.
+    - @page[:how_it_works][:content].each do |paragraph|
+        p= paragraph
+
+
+  section class='intro'
+    div class='image-with-caption'
+      = image_tag @page[:image]
+      div class='caption'
+        = @page[:image_caption]
+      div class='credit'
+        == @page[:image_credit]

@@ -1,0 +1,126 @@
+@import "neat";
+
+.banner {
+  position: relative;
+  background: #444;
+  display: block;
+  width: 100%;
+  min-height: 5em;
+  border-bottom: 1px solid;
+  padding-top: 1em;
+  color: #FFF;
+  h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 200%;
+  }
+}
+
+.navbar {
+  position: relative;
+  color: #FFF;
+  background: #222;
+  width: 100%;
+  height: 2em;
+}
+
+html, body {
+   background: #333;
+   height: 100%;
+   padding: 0;
+   margin: 0;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+.content {
+   position: relative;
+   background: #FFF;
+   width: 100%;
+   padding: 1em;
+   margin: 0;
+}
+
+// neat grid
+$selection-layout-grid: (
+  columns: 1,
+  gutter: 1rem,
+);
+
+$selection-layout-grid--tablet-up: (
+  columns: 6,
+  gutter: 1rem,
+  media: "(min-width: 768px)",
+);
+
+.selection-layout {
+  @include grid-container;
+}
+
+.selections {
+  @include grid-column(1, $selection-layout-grid);
+  @include grid-container;
+  padding-top: 1rem;
+  .donation {
+    color: #FFF;
+    margin-bottom: 2rem;
+    @include grid-column(3, $selection-layout-grid);
+    @include grid-media($selection-layout-grid--tablet-up) {
+      @include grid-column(2);
+    }
+
+    width: 300px;
+    img {
+      width: 300px;
+      height: 225px;
+      object-fit: cover;
+    }
+  }
+}
+.intro {
+  display: flex;
+  justify-content: space-around;
+
+  .text {
+    flex: 4;
+  }
+  .image-with-caption {
+    display: flex;
+    flex-direction: column;
+    img {
+      align-self: center;
+    }
+  }
+}
+
+
+.center-content {
+  margin: 1em 1em;
+  min-height: 500px;
+  background: #fff;
+  padding: 1em;
+}
+
+b {
+  font-weight: bold;
+}
+
+.donation-summary {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  li {
+    display: inline-block;
+    padding-right: 1em;
+  }
+}
+
+.reason-list {
+  list-style-type: circle;
+  li {
+    margin-left: 1.2em;
+  }
+  margin-bottom: 1em;
+}

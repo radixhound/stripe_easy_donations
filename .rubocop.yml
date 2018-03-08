@@ -1,0 +1,35 @@
+AllCops:
+  TargetRubyVersion: 2.3
+  Include:
+    - Rakefile
+    - config.ru
+  Exclude:
+    - app/admin/**
+    - config/**/*
+    - db/**/*
+    - features/support/env.rb
+    - Gemfile
+    - lib/tasks/cucumber.rake
+    - script/**
+
+Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 12
+
+Metrics/LineLength:
+  Max: 100
+  Exclude:
+    - features/step_definitions/*
+    - spec/factories/*

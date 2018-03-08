@@ -1,0 +1,11 @@
+section class='content'
+
+  h1 Thank you for your donation of #{number_to_currency(@donation.amount)}
+
+  p So far we have collected your donation and your email address #{@donation.email}.
+  p If you wish you can provide a personal message too!
+
+  = simple_form_for @donation do |f|
+    = f.input :name
+    = f.input :personal_message
+    = f.submit
