@@ -1,12 +1,20 @@
 section class='content'
 
-    div class='text'
-      h1= @page[:intro][:title]
-      - @page[:intro][:content].each do |paragraph|
-        p= paragraph
+  section class='intro'
+    div class='image-with-caption'
+      = image_tag(t '.image')
+      div class='caption'
+        = t ".image_caption"
+      div class='credit'
+        = t ".image_credit_html"
 
-      h2
-        =link_to('Why should I donate?', 'javascript:void scrollTo("why");')
+  div class='text'
+    h1= t ".intro.heading"
+    - t(".intro.content").each do |paragraph|
+      p= paragraph
+
+    h2
+      =link_to('Why should I donate?', 'javascript:void scrollTo("why");')
 
 div class='selection-layout'
   section class='selections'
@@ -27,27 +35,21 @@ div class='selection-layout'
         = f.submit 'Make Custom Donation'
 
 div id='why' class='content'
-  h2= @page[:why_donate][:heading]
+  h2= t ".why_donate.heading"
 
   section
     ul class="reason-list"
-      - @page[:why_donate][:content].each do |paragraph|
+      - (t ".why_donate.content").each do |paragraph|
         li= paragraph
 
-  h2= @page[:how_it_works][:heading]
+  h2= t ".how_it_works.heading"
   section
     p
       | All payments are processed securely with #{link_to('Stripe', 'http://stripe.com')}.
         We never receive your payment details, they go directly to Strip and are stored on their secure servers.
         Because we are running this site ourselves, there are no additional processing fees like when using donately.com or gofundme.com.
-    - @page[:how_it_works][:content].each do |paragraph|
+    - (t ".how_it_works.content").each do |paragraph|
         p= paragraph
 
 
-  section class='intro'
-    div class='image-with-caption'
-      = image_tag @page[:image]
-      div class='caption'
-        = @page[:image_caption]
-      div class='credit'
-        == @page[:image_credit]
+

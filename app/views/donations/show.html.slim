@@ -1,11 +1,11 @@
 main class='content'
-  h1= @page[:intro][:heading]
+  h1= t ".intro.heading"
   h2 Want to #{link_to('make another donation', donations_path)}?
-  - @page[:intro][:content].each do |paragraph|
+  - (t ".intro.content").each do |paragraph|
     p= paragraph
 
 div class='center-content'
-  p= @page[:personal_message][:intro]
+  p= t ".personal_message.intro"
 
   p You have received a donation of #{number_to_currency(@donation.amount)} from #{@donation.name} with a personal message:
 

@@ -1,5 +1,5 @@
 class DonationsController < ApplicationController
-  before_action :compute_donation_metrics, :load_page_content
+  before_action :compute_donation_metrics
 
   def index
     @pk = ENV['STRIPE_PK']
@@ -53,10 +53,6 @@ class DonationsController < ApplicationController
   end
 
   private
-
-  def load_page_content
-    @page = PageContent.get_page(action_name)
-  end
 
   def donation_params
     params.require(:donation).permit(:name, :personal_message)
